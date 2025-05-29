@@ -1,0 +1,26 @@
+name: Schedule Railway Bot
+
+on:
+  schedule:
+    # Runs at 8 AM and 8 PM UTC daily
+    - cron: '0 8 * * *'
+    - cron: '0 20 * * *'
+
+jobs:
+  railway-control:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Railway CLI
+        run: npm install -g railway
+
+      - name: Login to Railway
+        run: railway login --apiKey ${{ secrets.RAILWAY_API_TOKEN }}
+
+      - name: Start or Stop Railway project
+        run: |
+          CURRENT_HOUR=$(date -u +'%H')
+          if [ "$CURRENT_HOUR" -eq 8 ]; then
+            railway up --project <cb89e187-ba4f-41d2-be00-ffbc5811bb4a?environmentId=432e8484-676b-4374-a9c2-85e251d8ccda>
+          else
+            railway down --project <cb89e187-ba4f-41d2-be00-ffbc5811bb4a?environmentId=432e8484-676b-4374-a9c2-85e251d8ccda>
+          fi
