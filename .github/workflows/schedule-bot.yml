@@ -20,7 +20,7 @@ jobs:
         run: |
           CURRENT_HOUR=$(date -u +'%H')
           if [ "$CURRENT_HOUR" -eq 8 ]; then
-            railway up --project <cb89e187-ba4f-41d2-be00-ffbc5811bb4a?environmentId=432e8484-676b-4374-a9c2-85e251d8ccda>
+            railway up --project <cb89e187-ba4f-41d2-be00-ffbc5811bb4a>
           else
-            railway down --project <cb89e187-ba4f-41d2-be00-ffbc5811bb4a?environmentId=432e8484-676b-4374-a9c2-85e251d8ccda>
+            railway down --project <cb89e187-ba4f-41d2-be00-ffbc5811bb4a>
           fi
